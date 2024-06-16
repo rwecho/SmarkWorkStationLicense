@@ -77,11 +77,13 @@ const HomePage = () => {
       dataIndex: 'id',
       key: 'id',
       render: (text) => <a>{text}</a>,
+      responsive: ['md'],
     },
     {
       title: '电脑指纹',
       dataIndex: 'fingerprint',
       key: 'fingerprint',
+      responsive: ['md'],
     },
     {
       title: '注册信息',
@@ -92,6 +94,7 @@ const HomePage = () => {
       title: '创建时间',
       dataIndex: 'createdAt',
       key: 'createdAt',
+      responsive: ['md'],
       render: (text) => <span>{new Date(text).toLocaleString()}</span>,
     },
     {

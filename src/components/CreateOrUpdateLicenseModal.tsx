@@ -181,6 +181,7 @@ const CreateOrUpdateLicenseModal = (props: CreateOrUpdateLicenseModalProps) => {
             }}
           >
             <InputNumber
+              className='w-full'
               min={1}
               addonBefore='有效期:'
               addonAfter='天'
