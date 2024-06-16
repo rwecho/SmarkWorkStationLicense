@@ -1,0 +1,19 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+model Licenses {
+  id          Int      @id @default(autoincrement())
+  fingerprint String
+  license     String
+  brand       String?
+  expireDays   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
