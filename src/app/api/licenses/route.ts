@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import { publicEncrypt } from 'crypto'
 import crypto from 'crypto'
 import { License } from '@/types/license'
+import dayjs from 'dayjs'
 
 const prisma = new PrismaClient()
 
@@ -31,10 +32,11 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/LwpBnNUAAHcfDD/TbWpycjXBTtxuAEaWeLPZM5L7
 -----END PUBLIC KEY-----`
 
   const activateTime = new Date()
+  const expirationTime = dayjs(activateTime).add(expireDays, 'day')
   const licenseInfo = {
     Fingerprint: fingerprint,
     ActivationTime: activateTime.toISOString(),
-    ExpirationTime: activateTime.setDate(activateTime.getDate() + expireDays),
+    ExpirationTime: expirationTime.toISOString(),
     Salt: crypto.randomUUID(),
   }
 

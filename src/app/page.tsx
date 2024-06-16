@@ -1,12 +1,12 @@
 'use client'
-import { useUser } from '@auth0/nextjs-auth0/client'
 import { Button, Skeleton, Space, Table, TableProps, notification } from 'antd'
 import { useEffect, useState } from 'react'
 import { Modal } from 'antd'
 import { License } from '@/types/license'
 import CreateOrUpdateLicenseModal from '@/components/CreateOrUpdateLicenseModal'
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0/client'
 
-export default function Page() {
+const HomePage = () => {
   const { user, isLoading } = useUser()
 
   const [loading, setLoading] = useState(false)
@@ -143,3 +143,8 @@ export default function Page() {
     </>
   )
 }
+
+export default withPageAuthRequired(HomePage, {
+  onRedirecting: () => <div>loading.</div>,
+  onError: (error) => <div>{error.message}</div>,
+})

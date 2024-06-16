@@ -15,7 +15,7 @@ const items = [
   {
     key: '1',
     label: '注册码管理',
-    router: '/license',
+    router: '/',
   },
 ]
 const NavBar = () => {
@@ -43,19 +43,22 @@ const NavBar = () => {
       />
 
       <div className='ms-auto me-4'>
-        <Dropdown menu={{ items }} className=''>
-          <a onClick={(e) => e.preventDefault()}>
-            {user?.picture && (
-              <Image
-                src={user.picture}
-                alt='avatar'
-                width={32}
-                height={32}
-                className='rounded-full'
-              ></Image>
-            )}
-          </a>
-        </Dropdown>
+        <a
+          onClick={(e) => {
+            e.preventDefault()
+            router.push('/api/auth/logout')
+          }}
+        >
+          {user?.picture && (
+            <Image
+              src={user.picture}
+              alt='avatar'
+              width={32}
+              height={32}
+              className='rounded-full'
+            ></Image>
+          )}
+        </a>
       </div>
     </div>
   )
