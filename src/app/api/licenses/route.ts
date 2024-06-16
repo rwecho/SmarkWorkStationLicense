@@ -1,13 +1,14 @@
 import { NextRequest } from 'next/server'
 import { PrismaClient } from '@prisma/client'
-import { publicEncrypt, RsaPublicKey } from 'crypto'
+import { publicEncrypt } from 'crypto'
 import crypto from 'crypto'
+import { License } from '@/types/license'
 
 const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest, context: {}) {
   try {
-    const licenses = await prisma.licenses.findMany()
+    const licenses = (await prisma.licenses.findMany()) as License[]
 
     // order by created time desc
     licenses.sort((a, b) => {
