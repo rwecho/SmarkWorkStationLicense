@@ -117,7 +117,7 @@ const HomePage = () => {
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <Skeleton />
       ) : (
         <Table
